@@ -3,8 +3,6 @@ package com.example.demo.repository;
 import com.example.demo.Repository.MemberRepository;
 import com.example.demo.Repository.MemoryMemberRepository;
 import com.example.demo.domain.Member;
-import com.example.demo.service.MemberService;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,6 +32,7 @@ public class MemoryMemberRepositoryTest {
 
     @Test
     public void findByName() {
+        //given
         Member member1 = new Member();
         member1.setName("spring1");
         repository.save(member1);
@@ -42,8 +41,10 @@ public class MemoryMemberRepositoryTest {
         member2.setName("spring2");
         repository.save(member2);
 
-        Member result = repository.findByName("spring2").get();
+        //when
+        Member result = repository.findByName("spring1").get();
 
+        // then
         assertThat(result).isEqualTo(member1);
 
     }
